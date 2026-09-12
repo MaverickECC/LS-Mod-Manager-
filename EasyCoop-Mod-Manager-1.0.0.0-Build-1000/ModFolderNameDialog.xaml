@@ -1,0 +1,16 @@
+<Window x:Class="EasyCoop.ModManager.ModFolderNameDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Modordner benennen" Icon="Assets/EasyCoop.ico" Width="430" Height="205" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" Background="{StaticResource EasyCoopDark}" Foreground="White">
+    <Grid Margin="22">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+        <Image Grid.RowSpan="3" Source="Assets/EasyCoop-Background-ModFolder.png" Stretch="UniformToFill" Opacity="0.22" IsHitTestVisible="False"/>
+        <TextBlock Text="Anzeigename des Modordners" FontSize="19" FontWeight="Bold" />
+        <TextBox x:Name="NameBox" Grid.Row="1" Height="36" Margin="0,15,0,14" Padding="8,5" MaxLength="60" />
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Abbrechen" Background="#49554E" IsCancel="True" />
+            <Button Content="Hinzufügen" IsDefault="True" Click="Create_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

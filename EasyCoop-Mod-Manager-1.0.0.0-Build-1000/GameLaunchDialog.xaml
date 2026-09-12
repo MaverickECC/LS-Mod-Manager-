@@ -1,0 +1,36 @@
+<Window x:Class="EasyCoop.ModManager.GameLaunchDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Spielstart konfigurieren" Icon="Assets/EasyCoop.ico" Width="680" Height="465"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="{StaticResource EasyCoopDark}" Foreground="White">
+    <Grid Margin="22">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image Grid.RowSpan="6" Source="Assets/EasyCoop-Background-GameLaunch.png" Stretch="UniformToFill" Opacity="0.22" IsHitTestVisible="False"/>
+        <TextBlock x:Name="Heading" FontSize="22" FontWeight="Bold" />
+        <TextBlock Grid.Row="1" Text="Spielprogramm (.exe)" Foreground="#91D56D" FontWeight="Bold" Margin="0,18,0,6" />
+        <Grid Grid.Row="2"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+            <TextBox x:Name="ExecutableBox" Height="36" Padding="8,5" />
+            <Button Grid.Column="1" Content="Durchsuchen" Click="Browse_Click" />
+        </Grid>
+        <TextBlock Grid.Row="3" Text="Startparameter" Foreground="#91D56D" FontWeight="Bold" Margin="0,16,0,6" />
+        <StackPanel Grid.Row="4">
+            <TextBox x:Name="ArgumentsBox" Height="38" Padding="8,6" />
+            <WrapPanel Margin="0,7,0,0">
+                <Button Content="Keine Parameter" Tag="" Click="Preset_Click" Background="#49624F" />
+                <Button Content="Entwicklermodus" Tag="-cheats -dev" Click="Preset_Click" Background="#49624F" />
+                <Button Content="Savegame 1 starten" Tag="-autoStartSavegameId 1" Click="Preset_Click" Background="#49624F" />
+            </WrapPanel>
+            <Border Background="#202D26" CornerRadius="5" Padding="12" Margin="0,12,0,0">
+                <TextBlock TextWrapping="Wrap" Foreground="#C5D0CA">Die Parameter -cheats, -dev und -autoStartSavegameId werden in der Community verwendet, sind aber von GIANTS nicht als stabile öffentliche Schnittstelle für alle Versionen dokumentiert. Verwende sie auf eigene Verantwortung. Eigene Parameter können direkt eingegeben werden.</TextBlock>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Abbrechen" IsCancel="True" Background="#49554E" />
+            <Button Content="Speichern" Click="Save_Click" />
+            <Button Content="Speichern und starten" Click="Start_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,109 @@
+<Window x:Class="EasyCoop.ModManager.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EasyCoop – Optionen" Icon="Assets/EasyCoop.ico" Width="1040" Height="720" MinWidth="900" MinHeight="620"
+        WindowStartupLocation="CenterOwner" Background="{DynamicResource EasyCoopDark}" Foreground="{DynamicResource EasyCoopText}">
+    <Window.Resources>
+        <Style TargetType="CheckBox"><Setter Property="Margin" Value="0,7"/><Setter Property="Foreground" Value="{DynamicResource EasyCoopText}"/></Style>
+        <Style TargetType="TextBox"><Setter Property="Height" Value="34"/><Setter Property="Padding" Value="8,5"/><Setter Property="Margin" Value="0,4,0,9"/></Style>
+        <Style TargetType="ComboBox"><Setter Property="Height" Value="34"/><Setter Property="Margin" Value="0,4,0,9"/></Style>
+        <Style x:Key="Label" TargetType="TextBlock"><Setter Property="Foreground" Value="#91D56D"/><Setter Property="FontWeight" Value="SemiBold"/></Style>
+        <Style x:Key="Heading" TargetType="TextBlock"><Setter Property="FontSize" Value="25"/><Setter Property="FontWeight" Value="Bold"/><Setter Property="Margin" Value="0,0,0,18"/></Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="66"/></Grid.RowDefinitions>
+        <Image Grid.RowSpan="2" Source="Assets/EasyCoop-Background-Options.png" Stretch="UniformToFill" Opacity="0.20" IsHitTestVisible="False"/>
+        <Grid Grid.Row="0" Margin="18">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="225"/><ColumnDefinition Width="16"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+            <Border Background="{DynamicResource EasyCoopPanel}" CornerRadius="8" Padding="8">
+                <ListBox x:Name="Navigation" Background="Transparent" BorderThickness="0" FontSize="15" SelectionChanged="Navigation_SelectionChanged">
+                    <ListBoxItem Content="Allgemein"/><ListBoxItem Content="Darstellung"/><ListBoxItem Content="Spielepfade"/>
+                    <ListBoxItem Content="Modordner"/><ListBoxItem Content="Spielstart"/><ListBoxItem Content="Mod-Analyse"/>
+                    <ListBoxItem Content="Backups"/><ListBoxItem Content="Updates"/><ListBoxItem Content="Benachrichtigungen"/>
+                    <ListBoxItem Content="Sicherheit"/><ListBoxItem Content="Erweitert"/>
+                </ListBox>
+            </Border>
+            <Border Grid.Column="2" Background="{DynamicResource EasyCoopPanel}" CornerRadius="8" Padding="24">
+                <TabControl x:Name="Pages" Background="Transparent" BorderThickness="0">
+                    <TabControl.Resources><Style TargetType="TabItem"><Setter Property="Visibility" Value="Collapsed"/></Style></TabControl.Resources>
+                    <TabItem><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+                        <TextBlock Text="Allgemein" Style="{StaticResource Heading}"/>
+                        <TextBlock Text="Sprache" Style="{StaticResource Label}"/><ComboBox x:Name="LanguageBox"><ComboBoxItem Content="Deutsch"/><ComboBoxItem Content="Englisch"/></ComboBox>
+                        <CheckBox x:Name="AutostartBox" Content="Autostart mit Windows"/>
+                        <TextBlock Text="Verhalten beim Schließen" Style="{StaticResource Label}"/><ComboBox x:Name="CloseBehaviorBox"><ComboBoxItem Content="Beenden"/><ComboBoxItem Content="Minimieren"/><ComboBoxItem Content="Nachfragen"/></ComboBox>
+                        <CheckBox x:Name="ReopenFolderBox" Content="Letzten Modordner wieder öffnen"/>
+                        <TextBlock Text="Standard-Spielversion" Style="{StaticResource Label}"/><ComboBox x:Name="DefaultGameBox"><ComboBoxItem Content="LS19"/><ComboBoxItem Content="LS22"/><ComboBoxItem Content="LS25"/></ComboBox>
+                    </StackPanel></ScrollViewer></TabItem>
+                    <TabItem><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+                        <TextBlock Text="Darstellung" Style="{StaticResource Heading}"/>
+                        <TextBlock Text="Farbschema" Style="{StaticResource Label}"/><ComboBox x:Name="ThemeBox"><ComboBoxItem Content="Dunkel"/><ComboBoxItem Content="Hell"/><ComboBoxItem Content="System"/></ComboBox>
+                        <TextBlock Text="Modansicht" Style="{StaticResource Label}"/><ComboBox x:Name="ViewBox"><ComboBoxItem Content="Kacheln"/><ComboBoxItem Content="Liste"/></ComboBox>
+                        <TextBlock Text="Größe der Modbilder" Style="{StaticResource Label}"/><Slider x:Name="ImageSizeSlider" Minimum="80" Maximum="260" TickFrequency="20" IsSnapToTickEnabled="True" ValueChanged="PreviewValue_Changed"/><TextBlock x:Name="ImageSizeText" Margin="0,4,0,12"/>
+                        <TextBlock Text="Anzahl der Mods pro Zeile" Style="{StaticResource Label}"/><Slider x:Name="ModsPerRowSlider" Minimum="2" Maximum="8" TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="PreviewValue_Changed"/><TextBlock x:Name="ModsPerRowText" Margin="0,4,0,12"/>
+                        <TextBlock Text="Angezeigte Modinformationen (kommagetrennt)" Style="{StaticResource Label}"/><TextBox x:Name="VisibleInfoBox"/>
+                    </StackPanel></ScrollViewer></TabItem>
+                    <TabItem><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+                        <TextBlock Text="Spielepfade" Style="{StaticResource Heading}"/>
+                        <TextBlock Text="LS19-Installationspfad" Style="{StaticResource Label}"/><TextBox x:Name="Ls19PathBox"/>
+                        <TextBlock Text="LS22-Installationspfad" Style="{StaticResource Label}"/><TextBox x:Name="Ls22PathBox"/>
+                        <TextBlock Text="LS25-Installationspfad" Style="{StaticResource Label}"/><TextBox x:Name="Ls25PathBox"/>
+                        <TextBlock Text="Benutzerverzeichnis" Style="{StaticResource Label}"/><TextBox x:Name="UserDirectoryBox"/>
+                        <TextBlock Text="Spielstand- und Logdateipfad" Style="{StaticResource Label}"/><TextBox x:Name="SavegameLogBox"/>
+                        <TextBlock Text="Installationsplattform" Style="{StaticResource Label}"/><ComboBox x:Name="ProviderBox"><ComboBoxItem Content="Automatisch"/><ComboBoxItem Content="Steam"/><ComboBoxItem Content="Epic"/><ComboBoxItem Content="GIANTS"/></ComboBox>
+                        <Button Content="Spielepfade automatisch erkennen" HorizontalAlignment="Left" Click="DetectGamePaths_Click"/>
+                    </StackPanel></ScrollViewer></TabItem>
+                    <TabItem><Grid><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                        <TextBlock Text="Modordner" Style="{StaticResource Heading}"/><ListBox Grid.Row="1" x:Name="FoldersList" DisplayMemberPath="DisplayText" Background="#17201B"/>
+                        <StackPanel Grid.Row="2"><WrapPanel Margin="0,10,0,0"><Button Content="Hinzufügen" Click="AddFolder_Click"/><Button Content="Bearbeiten" Click="EditFolder_Click"/><Button Content="Als Standard" Click="SetDefaultFolder_Click"/><Button Content="Automatisch erkennen" Click="DetectFolders_Click"/></WrapPanel>
+                        <TextBlock Text="Verhalten beim Wechsel" Style="{StaticResource Label}" Margin="0,12,0,0"/><ComboBox x:Name="FolderSwitchBox"><ComboBoxItem Content="Kopieren"/><ComboBoxItem Content="Verschieben"/><ComboBoxItem Content="Verknüpfen"/></ComboBox></StackPanel>
+                    </Grid></TabItem>
+                    <TabItem><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+                        <TextBlock Text="Spielstart" Style="{StaticResource Heading}"/>
+                        <TextBlock Text="Startplattform" Style="{StaticResource Label}"/><ComboBox x:Name="StartPlatformBox"><ComboBoxItem Content="Direkt"/><ComboBoxItem Content="Steam"/><ComboBoxItem Content="Epic"/><ComboBoxItem Content="GIANTS"/></ComboBox>
+                        <TextBlock Text="Spielversion für Parameter" Style="{StaticResource Label}"/><ComboBox x:Name="LaunchGameBox" SelectionChanged="LaunchGameBox_SelectionChanged"><ComboBoxItem Content="LS19"/><ComboBoxItem Content="LS22"/><ComboBoxItem Content="LS25"/></ComboBox>
+                        <TextBlock Text="Startparameter" Style="{StaticResource Label}"/><TextBox x:Name="LaunchArgumentsBox" TextChanged="LaunchArgumentsBox_TextChanged"/>
+                        <CheckBox x:Name="MinimizeOnStartBox" Content="EasyCoop beim Spielstart minimieren"/><CheckBox x:Name="LockModsBox" Content="Mods während des Spielbetriebs sperren"/><CheckBox x:Name="AnalyzeLogBox" Content="Logdatei nach dem Spielende analysieren"/>
+                    </StackPanel></ScrollViewer></TabItem>
+                    <TabItem><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+                        <TextBlock Text="Mod-Analyse" Style="{StaticResource Heading}"/><CheckBox x:Name="AnalyzeOnScanBox" Content="Mods beim Einlesen automatisch prüfen"/>
+                        <TextBlock Text="Analysetiefe" Style="{StaticResource Label}"/><ComboBox x:Name="AnalysisDepthBox"><ComboBoxItem Content="Schnell"/><ComboBoxItem Content="Standard"/><ComboBoxItem Content="Tief"/></ComboBox>
+                        <CheckBox x:Name="DetectDamageBox" Content="Doppelte und beschädigte Mods erkennen"/><CheckBox x:Name="CheckDependenciesBox" Content="Abhängigkeiten und Konflikte prüfen"/>
+                        <TextBlock Text="Warnstufe" Style="{StaticResource Label}"/><ComboBox x:Name="WarningLevelBox"><ComboBoxItem Content="Niedrig"/><ComboBoxItem Content="Normal"/><ComboBoxItem Content="Streng"/></ComboBox>
+                    </StackPanel></ScrollViewer></TabItem>
+                    <TabItem><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+                        <TextBlock Text="Backups" Style="{StaticResource Heading}"/><CheckBox x:Name="AutomaticBackupsBox" Content="Automatische Backups aktivieren"/>
+                        <TextBlock Text="Backup-Speicherort" Style="{StaticResource Label}"/><TextBox x:Name="BackupPathBox"/>
+                        <TextBlock Text="Sicherungsintervall" Style="{StaticResource Label}"/><ComboBox x:Name="BackupIntervalBox"><ComboBoxItem Content="Vor Änderungen"/><ComboBoxItem Content="Täglich"/><ComboBoxItem Content="Wöchentlich"/></ComboBox>
+                        <TextBlock Text="Anzahl aufzubewahrender Backups" Style="{StaticResource Label}"/><TextBox x:Name="BackupRetentionBox"/>
+                        <CheckBox x:Name="BackupModsBox" Content="Mods sichern"/><CheckBox x:Name="BackupSavegamesBox" Content="Spielstände sichern"/>
+                        <Button Content="Backups wiederherstellen" HorizontalAlignment="Left" Click="RestoreBackups_Click"/>
+                    </StackPanel></ScrollViewer></TabItem>
+                    <TabItem><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+                        <TextBlock Text="Updates" Style="{StaticResource Heading}"/><CheckBox x:Name="CheckUpdatesBox" Content="Nach EasyCoop-Updates suchen"/><CheckBox x:Name="AutomaticUpdatesBox" Content="Automatische Updates"/>
+                        <TextBlock Text="Updatekanal" Style="{StaticResource Label}"/><ComboBox x:Name="UpdateChannelBox"><ComboBoxItem Content="Stabil"/><ComboBoxItem Content="Vorschau"/></ComboBox>
+                        <CheckBox x:Name="CheckModUpdatesBox" Content="Mod-Updates prüfen"/><CheckBox x:Name="BackupOldVersionBox" Content="Alte Modversion vor dem Update sichern"/>
+                        <Button Content="Jetzt nach Updates suchen" HorizontalAlignment="Left" Click="CheckUpdates_Click"/>
+                    </StackPanel></ScrollViewer></TabItem>
+                    <TabItem><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+                        <TextBlock Text="Benachrichtigungen" Style="{StaticResource Heading}"/><CheckBox x:Name="NotifyAnalysisBox" Content="Analyse abgeschlossen"/><CheckBox x:Name="NotifyBrokenBox" Content="Fehlerhafte Mods gefunden"/><CheckBox x:Name="NotifyUpdateBox" Content="Mod-Update verfügbar"/><CheckBox x:Name="NotifyBackupBox" Content="Backup abgeschlossen"/><CheckBox x:Name="DesktopNotificationsBox" Content="Desktop-Benachrichtigungen"/><CheckBox x:Name="NotificationSoundBox" Content="Benachrichtigungston"/>
+                    </StackPanel></ScrollViewer></TabItem>
+                    <TabItem><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+                        <TextBlock Text="Sicherheit" Style="{StaticResource Heading}"/><CheckBox x:Name="ConfirmDeleteBox" Content="Bestätigung vor dem Löschen"/><CheckBox x:Name="UseTrashBox" Content="Papierkorb statt endgültigem Löschen"/><CheckBox x:Name="ReportUnknownBox" Content="Unbekannte Dateien melden"/>
+                        <TextBlock Text="Quarantäneordner" Style="{StaticResource Label}"/><TextBox x:Name="QuarantinePathBox"/><Button Content="Quarantäneordner öffnen" HorizontalAlignment="Left" Click="OpenQuarantine_Click"/><CheckBox x:Name="BackupOriginalsBox" Content="Originaldateien vor Änderungen sichern"/>
+                    </StackPanel></ScrollViewer></TabItem>
+                    <TabItem><ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel>
+                        <TextBlock Text="Erweitert" Style="{StaticResource Heading}"/><CheckBox x:Name="DebugLoggingBox" Content="Debug-Protokoll aktivieren"/>
+                        <WrapPanel><Button Content="Cache leeren" Click="ClearCache_Click"/><Button Content="Moddatenbank neu aufbauen" Click="RebuildDatabase_Click"/><Button Content="Protokollordner öffnen" Click="OpenLogs_Click"/></WrapPanel>
+                        <WrapPanel><Button Content="Einstellungen importieren" Click="ImportSettings_Click"/><Button Content="Einstellungen exportieren" Click="ExportSettings_Click"/></WrapPanel>
+                        <Separator Margin="0,18"/><Button Content="EasyCoop zurücksetzen" Background="#A64242" HorizontalAlignment="Left" Click="ResetEasyCoop_Click"/>
+                    </StackPanel></ScrollViewer></TabItem>
+                </TabControl>
+            </Border>
+        </Grid>
+        <Border Grid.Row="1" Background="#0B100D" BorderBrush="#425148" BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="18,0">
+                <TextBlock x:Name="SaveStatus" VerticalAlignment="Center" Foreground="#91D56D" Margin="0,0,15,0"/>
+                <Button Content="Standardeinstellungen" Background="#49624F" Click="Defaults_Click"/><Button Content="Verwerfen" Background="#49554E" Click="Discard_Click"/><Button Content="Änderungen speichern" Click="Save_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,11 @@
+Willkommen beim EasyCoop Mod Manager
+
+Vielen Dank, dass du dich für den EasyCoop Mod Manager entschieden hast.
+
+EasyCoop unterstützt dich bei der übersichtlichen und komfortablen Verwaltung deiner Landwirtschafts-Simulator-Mods. Wechsle schnell zwischen verschiedenen Modordnern, analysiere installierte Mods, erkenne mögliche Probleme und starte dein Spiel direkt mit deinen bevorzugten Einstellungen.
+
+Der Installationsassistent führt dich Schritt für Schritt durch die Einrichtung.
+
+Bitte schließe vor der Installation alle laufenden Instanzen des EasyCoop Mod Managers. Deine vorhandenen Mods und Spielstände werden durch die Installation nicht verändert.
+
+Klicke auf „Weiter“, um mit der Installation zu beginnen.

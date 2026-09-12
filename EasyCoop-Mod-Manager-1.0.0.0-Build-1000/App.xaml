@@ -1,0 +1,19 @@
+<Application x:Class="EasyCoop.ModManager.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="EasyCoopGreen" Color="#5FAE37" />
+        <SolidColorBrush x:Key="EasyCoopDark" Color="#111815" />
+        <SolidColorBrush x:Key="EasyCoopPanel" Color="#1C2822" />
+        <SolidColorBrush x:Key="EasyCoopText" Color="#FFFFFF" />
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource EasyCoopGreen}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="14,8" />
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </Application.Resources>
+</Application>

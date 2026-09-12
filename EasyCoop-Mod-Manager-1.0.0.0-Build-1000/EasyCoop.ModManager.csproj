@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>EasyCoop Mod Manager</AssemblyName>
+    <RootNamespace>EasyCoop.ModManager</RootNamespace>
+    <Version>1.0.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0.0+build.1000</InformationalVersion>
+    <Product>EasyCoop Mod Manager</Product>
+    <Company>EasyCoopClanTV</Company>
+    <Copyright>Copyright © EasyCoopClanTV</Copyright>
+    <ApplicationIcon>Assets\EasyCoop.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Assets\EasyCoop-Logo.png" />
+    <Resource Include="Assets\EasyCoop.ico" />
+    <Resource Include="Assets\EasyCoop-Background.png" />
+    <Resource Include="Assets\EasyCoop-Installer-Background.png" />
+    <Resource Include="Assets\EasyCoop-Background-Main.png" />
+    <Resource Include="Assets\EasyCoop-Background-About.png" />
+    <Resource Include="Assets\EasyCoop-Background-Options.png" />
+    <Resource Include="Assets\EasyCoop-Background-GameLaunch.png" />
+    <Resource Include="Assets\EasyCoop-Background-Servers.png" />
+    <Resource Include="Assets\EasyCoop-Background-ModFolder.png" />
+    <Resource Include="Assets\EasyCoop-Background-Profile.png" />
+    <Resource Include="Assets\LS19-Official-Logo.png" />
+    <Resource Include="Assets\LS22-Official-Logo.png" />
+    <Resource Include="Assets\LS25-Official-Logo.png" />
+    <Resource Include="Assets\EasyCoop-Background-Savegames.png" />
+    <Resource Include="Assets\EasyCoop-Background-AdvancedSavegame.png" />
+  </ItemGroup>
+</Project>
